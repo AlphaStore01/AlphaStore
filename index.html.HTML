@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALPHA STORE | Estilo e Atitude</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* --- ESTILO DA LOGO ALPHA STORE --- */
+        .logo-modern {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-modern .alpha-symbol {
+            background-color: #fff;
+            color: #000;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 24px;
+            font-weight: 800;
+            margin-right: 10px;
+        }
+
+        .logo-modern .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+
+        .logo-modern .store-name {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .logo-modern .store-tagline {
+            font-weight: 400;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ccc;
+            margin-top: 2px;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            cursor: pointer; 
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ccc;
+        }
+
+        /* Banner Principal */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Vitrine de Produtos */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        /* SEÇÃO SOBRE */
+        .sobre-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .sobre-container p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .sobre-container b {
+            color: #000;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .feature-item {
+            flex: 1;
+            min-width: 200px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .feature-item h4 {
+            margin-bottom: 10px;
+            color: #000;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Grid de Produtos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background-color: #eee;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            object-fit: cover;
+            cursor: zoom-in;
+        }
+
+        .price {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .btn-buy {
+            background-color: #25d366; 
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .btn-buy:hover {
+            background-color: #128c7e;
+        }
+
+        .product-size {
+            margin: 10px 0;
+            padding: 5px;
+            width: 80%;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 50px;
+        }
+
+        /* --- BOTÕES FLUTUANTES REDES SOCIAIS --- */
+        .social-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-float {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.3s, filter 0.3s;
+        }
+
+        .btn-float:hover {
+            transform: scale(1.1);
+        }
+
+        .float-whatsapp { background-color: #25d366; }
+        .float-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+
+        /* --- ANIMAÇÕES E TRANSIÇÕES --- */
+        .sessao-produtos {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+        }
+
+        .escondido {
+            display: none;
+            opacity: 0;
+            transform: scale(0.95) translateY(30px);
+            filter: blur(10px);
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: scale(1.02) translateY(-20px);
+            filter: blur(5px);
+        }
+
+        .modal-img {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(5px);
+            cursor: zoom-out;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            animation: popIn 0.4s cubic-bezier(0.17, 0.89, 0.32, 1.28);
+        }
+
+        .modal-escolha {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .escolha-caixa {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: popIn 0.4s cubic-bezier(0.17, 0.89, 0.32, 1.28);
+        }
+
+        .btn-categoria {
+            display: block;
+            background: #000;
+            color: white;
+            padding: 16px;
+            margin: 12px 0;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.8) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+    </style>
+</head>
+<body>
+
+    <div id="meuModal" class="modal-img" onclick="this.style.display='none'">
+        <img class="modal-content" id="imgExpandida">
+    </div>
+
+    <div id="modalEscolha" class="modal-escolha" onclick="fecharModalProdutos(event)">
+        <div class="escolha-caixa">
+            <h3>O que deseja ver?</h3>
+            <a onclick="trocarCategoria('camisas')" class="btn-categoria">Camisas</a>
+            <a onclick="trocarCategoria('bermudas')" class="btn-categoria">Bermudas</a>
+        </div>
+    </div>
+
+    <div class="social-float">
+        <a href="https://www.instagram.com/alphastore.outfit?igsh=MW02aXV0d3U4am9nOQ%3D%3D&utm_source=qr" class="btn-float float-instagram" target="_blank" title="Siga nosso Instagram">
+            <svg width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.282.11-.705.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
+        </a>
+        <a href="https://wa.me/5579996909919" class="btn-float float-whatsapp" target="_blank" title="Fale conosco no WhatsApp">
+            <svg width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+        </a>
+    </div>
+
+    <header>
+        <div class="logo-modern" onclick="trocarCategoria('camisas')">
+            <div class="alpha-symbol">A</div>
+            <div class="logo-text">
+                <span class="store-name">Alpha</span>
+                <span class="store-tagline">Store</span>
+            </div>
+        </div>
+
+        <nav>
+            <a onclick="trocarCategoria('camisas')">Início</a>
+            <a onclick="document.getElementById('modalEscolha').style.display='flex'">Produtos</a>
+            <a onclick="trocarCategoria('sobre')">Sobre</a>
+            <a href="https://www.instagram.com/alphastore.outfit?igsh=MW02aXV0d3U4am9nOQ%3D%3D&utm_source=qr" target="_blank">Instagram</a>
+            <a href="https://wa.me/5579996909919?text=Olá! Gostaria de tirar uma dúvida sobre os produtos." target="_blank">Contato</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>NOVA COLEÇÃO 2026</h2>
+        <p>O topo é o seu lugar. Vista ALPHA.</p>
+    </section>
+
+    <div class="container">
+        
+        <div id="sobre-secao" class="sessao-produtos escondido">
+            <h3 class="section-title">Sobre a ALPHA STORE</h3>
+            <div class="sobre-container">
+                <p>Na <b>ALPHA STORE</b>, acreditamos que a roupa não é apenas tecido, mas sim uma armadura de confiança. Nossa missão é vestir homens que buscam <b>estilo, presença e atitude</b> em cada detalhe.</p>
+                <p>Nascemos para entregar o que há de melhor no vestuário masculino, unindo cortes modernos a materiais de alta durabilidade. Seja para o dia a dia ou para momentos decisivos, nós garantimos que você estará sempre um passo à frente.</p>
+                
+                <div class="features">
+                    <div class="feature-item">
+                        <h4>Qualidade Premium</h4>
+                        <p>Tecidos selecionados para garantir conforto o dia todo.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Estilo Exclusivo</h4>
+                        <p>Peças que destacam sua personalidade em qualquer lugar.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Atendimento Alpha</h4>
+                        <p>Suporte rápido e direto via WhatsApp para sua comodidade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="camisas-secao" class="sessao-produtos">
+            <h3 class="section-title">Nossas Camisas</h3>
+            <div class="products-grid">
+                <div class="product-card" data-name="Camiseta Premium Branca" data-price="R$ 59,99">
+                    <img src="IMG_3356.PNG" alt="Camiseta Alpha" class="product-image">
+                    <h4>Camiseta Premium Branca</h4>
+                    <select class="product-size"><option value="G">Tamanho G</option></select>
+                    <p class="price">R$ 59,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+                <div class="product-card" data-name="Camiseta Premium Branca" data-price="R$ 59,99">
+                    <img src="IMG_3357.PNG" alt="Camiseta Alpha" class="product-image">
+                    <h4>Camiseta Premium Branca</h4>
+                    <select class="product-size"><option value="M">Tamanho M</option></select>
+                    <p class="price">R$ 59,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+                <div class="product-card" data-name="Camiseta Premium Branca" data-price="R$ 59,99">
+                    <img src="IMG_3354.PNG" alt="Camiseta Alpha" class="product-image">
+                    <h4>Camiseta Premium Branca</h4>
+                    <select class="product-size"><option value="G">Tamanho G</option></select>
+                    <p class="price">R$ 59,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+                <div class="product-card" data-name="Camiseta Premium Branca" data-price="R$ 59,99">
+                    <img src="IMG_3351.png" alt="Camiseta Alpha" class="product-image">
+                    <h4>Camiseta Premium Branca</h4>
+                    <select class="product-size"><option value="M">Tamanho M</option></select>
+                    <p class="price">R$ 59,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+                <div class="product-card" data-name="Camiseta Premium Preta" data-price="R$ 59,99">
+                    <img src="IMG_3348.PNG" alt="Camiseta Alpha" class="product-image">
+                    <h4>Camiseta Premium Preta</h4>
+                    <select class="product-size"><option value="G">Tamanho G</option></select>
+                    <p class="price">R$ 59,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+                <div class="product-card" data-name="Camiseta Premium Preta" data-price="R$ 59,99">
+                    <img src="IMG_3352.PNG" alt="Camiseta Alpha" class="product-image">
+                    <h4>Camiseta Premium Preta</h4>
+                    <select class="product-size"><option value="G">Tamanho G</option></select>
+                    <p class="price">R$ 59,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div> 
+
+                <div class="product-card" data-name="Camiseta Premium Bege" data-price="R$ 59,99">
+                    <img src="IMG_3353.PNG" alt="Camiseta Alpha" class="product-image">
+                    <h4>Camiseta Premium Bege</h4>
+                    <select class="product-size"><option value="G">Tamanho G</option></select>
+                    <p class="price">R$ 59,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="bermudas-secao" class="sessao-produtos escondido">
+            <h3 class="section-title">Nossas Bermudas</h3>
+            <div class="products-grid">
+                
+                <div class="product-card" data-name="Bermuda Jeans Alpha 01" data-price="R$ 69,99">
+                    <img src="IMG_3345.PNG" alt="Bermuda Alpha" class="product-image">
+                    <h4>Bermuda Jeans</h4>
+                    <select class="product-size"><option value="P">Tamanho P</option></select>
+                    <p class="price">R$ 69,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+                <div class="product-card" data-name="Bermuda Jeans Alpha 02" data-price="R$ 69,99">
+                    <img src="IMG_3346.PNG" alt="Bermuda Alpha" class="product-image">
+                    <h4>Bermuda Jeans</h4>
+                    <select class="product-size"><option value="G">Tamanho G</option></select>
+                    <p class="price">R$ 69,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+                <div class="product-card" data-name="Bermuda Jeans Alpha 03" data-price="R$ 69,99">
+                    <img src="IMG_3538.PNG" alt="Bermuda Alpha" class="product-image">
+                    <h4>Bermuda Jeans</h4>
+                    <select class="product-size"><option value="G">Tamanho G</option></select>
+                    <p class="price">R$ 69,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+                <div class="product-card" data-name="Bermuda Jeans Alpha 04" data-price="R$ 69,99">
+                    <img src="IMG_3537.PNG" alt="Bermuda Alpha" class="product-image">
+                    <h4>Bermuda Jeans</h4>
+                    <select class="product-size"><option value="M">Tamanho M</option></select>
+                    <p class="price">R$ 69,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+                <div class="product-card" data-name="Short Mauricinho 05" data-price="R$ 49,99">
+                    <img src="IMG_3534.PNG" alt="Bermuda Alpha" class="product-image">
+                    <h4>Short Mauricinho</h4>
+                    <select class="product-size"><option value="G">Tamanho G</option></select>
+                    <p class="price">R$ 49,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+                <div class="product-card" data-name="Short Mauricinho 06" data-price="R$ 49,99">
+                    <img src="IMG_3565.PNG" alt="Bermuda Alpha" class="product-image">
+                    <h4>Short Mauricinho</h4>
+                    <select class="product-size"><option value="M">Tamanho M</option></select>
+                    <p class="price">R$ 49,99</p>
+                    <button class="btn-buy" onclick="comprar(this)">Comprar Agora</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ALPHA STORE - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Função para trocar as categorias na tela com animação suave e luxuosa
+        function trocarCategoria(categoria) {
+            const camisas = document.getElementById('camisas-secao');
+            const bermudas = document.getElementById('bermudas-secao');
+            const sobre = document.getElementById('sobre-secao');
+            const modal = document.getElementById('modalEscolha');
+            
+            // 1. Inicia o efeito de saída
+            camisas.classList.add('fade-out');
+            bermudas.classList.add('fade-out');
+            sobre.classList.add('fade-out');
+
+            // 2. Espera a animação de saída terminar
+            setTimeout(() => {
+                // Esconde tudo primeiro
+                camisas.classList.add('escondido');
+                bermudas.classList.add('escondido');
+                sobre.classList.add('escondido');
+
+                // Mostra a categoria escolhida
+                if (categoria === 'camisas') {
+                    camisas.classList.remove('escondido', 'fade-out');
+                } else if (categoria === 'bermudas') {
+                    bermudas.classList.remove('escondido', 'fade-out');
+                } else if (categoria === 'sobre') {
+                    sobre.classList.remove('escondido', 'fade-out');
+                }
+                
+                modal.style.display = 'none';
+                
+                // 3. Rola suavemente para o topo
+                window.scrollTo({ top: document.querySelector('.container').offsetTop - 120, behavior: 'smooth' });
+            }, 400);
+        }
+
+        function fecharModalProdutos(event) {
+            if (event.target.id === 'modalEscolha') {
+                document.getElementById('modalEscolha').style.display = 'none';
+            }
+        }
+
+        function comprar(botao) {
+            const card = botao.parentElement;
+            const nome = card.getAttribute('data-name');
+            const preco = card.getAttribute('data-price');
+            const tamanho = card.querySelector('.product-size').value;
+            const imgPath = card.querySelector('.product-image').getAttribute('src');
+            
+            // Link blindado para funcionar no PC e no GitHub/Servidor
+            const fullImgLink = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1) + imgPath;
+
+            const numeroTel = "5579996909919";
+            const mensagem = `Olá, ALPHA STORE! 👋\n\nGostaria de comprar este produto:\n📦 Item: ${nome}\n📏 Tamanho: ${tamanho}\n💰 Valor: ${preco}\n🖼️ Link da foto: ${fullImgLink}`;
+            window.open(`https://wa.me/${numeroTel}?text=${encodeURIComponent(mensagem)}`, '_blank');
+        }
+
+        // Função para expandir imagem ao clicar
+        document.querySelectorAll('.product-image').forEach(img => {
+            img.onclick = function() {
+                const modal = document.getElementById("meuModal");
+                const modalImg = document.getElementById("imgExpandida");
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+            }
+        });
+    </script>
+
+</body>
+</html>
