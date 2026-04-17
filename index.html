@@ -202,6 +202,13 @@
             border-radius: 4px;
             object-fit: cover;
             cursor: zoom-in;
+            transition: filter 0.3s ease; /* Transição suave para o cinza */
+        }
+
+        /* --- CLASSE PARA FOTO CINZA --- */
+        .esgotado-img {
+            filter: grayscale(100%);
+            opacity: 0.6;
         }
 
         .price {
@@ -474,6 +481,65 @@
             font-weight: bold;
         }
 
+        /* --- AJUSTES PARA CELULAR (RESPONSIVIDADE) --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            nav a {
+                margin: 0 5px;
+                font-size: 14px;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            /* Exibir 2 produtos por linha no celular */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .product-card {
+                padding: 10px;
+            }
+
+            .product-image {
+                height: 180px;
+            }
+
+            .product-card h4 {
+                font-size: 14px;
+            }
+
+            .price {
+                font-size: 1rem;
+            }
+            
+            .product-size {
+                width: 100%;
+            }
+
+            .container {
+                padding: 0 10px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -599,12 +665,12 @@
                     <h4>Camiseta Premium Branca</h4>
                     <select class="product-size"><option value="G">Tamanho G</option></select>
                     <p class="price">R$ 59,99</p>
-                    <span class="stock-info">  Estoque: 1 unidades</span>
+                    <span class="stock-info">  Estoque: 1 unidades</span>
                     <button class="btn-buy" onclick="comprar(this)">Adicionar ao Carrinho</button>
                 </div>
 
                 <div class="product-card" id="prod-4" data-name="Camiseta Premium Branca" data-price="R$ 59,99" data-stock="1">
-                    <img src="IMG_3351.PNG" alt="Camiseta Alpha" class="product-image">
+                    <img src="IMG_3351.png" alt="Camiseta Alpha" class="product-image">
                     <h4>Camiseta Premium Branca</h4>
                     <select class="product-size"><option value="M">Tamanho M</option></select>
                     <p class="price">R$ 59,99</p>
@@ -612,7 +678,7 @@
                     <button class="btn-buy" onclick="comprar(this)">Adicionar ao Carrinho</button>
                 </div>
 
-                <div class="product-card" id="prod-5" data-name="Camiseta Premium Preta" data-price="R$ 59,99" data-stock="1">
+                <div class="product-card" id="prod-5" data-name="Camiseta Premium Preta" data-price="R$ 59,99" data-stock="0">
                     <img src="IMG_3348.PNG" alt="Camiseta Alpha" class="product-image">
                     <h4>Camiseta Premium Preta</h4>
                     <select class="product-size"><option value="G">Tamanho G</option></select>
@@ -630,7 +696,7 @@
                     <button class="btn-buy" onclick="comprar(this)">Adicionar ao Carrinho</button>
                 </div> 
 
-                <div class="product-card" id="prod-7" data-name="Camiseta Premium Bege" data-price="R$ 59,99" data-stock="1">
+                <div class="product-card" id="prod-7" data-name="Camiseta Premium Bege" data-price="R$ 59,99" data-stock="0">
                     <img src="IMG_3353.PNG" alt="Camiseta Alpha" class="product-image">
                     <h4>Camiseta Premium Bege</h4>
                     <select class="product-size"><option value="G">Tamanho G</option></select>
@@ -712,16 +778,19 @@
         let carrinho = [];
         let cupomAplicado = false;
 
-        // Atualiza a interface (estilos e textos) baseado no data-stock atual
         function atualizarInterfaceEstoque() {
             document.querySelectorAll('.product-card').forEach(card => {
                 const estoque = parseInt(card.getAttribute('data-stock'));
                 const botao = card.querySelector('.btn-buy');
                 const infoText = card.querySelector('.stock-info');
+                const img = card.querySelector('.product-image');
 
                 if (estoque <= 0) {
                     botao.disabled = true;
                     botao.innerText = "Esgotado";
+                    // ADICIONA O FILTRO CINZA NA IMAGEM
+                    if(img) img.classList.add('esgotado-img'); 
+                    
                     if(infoText) {
                         infoText.innerText = "ESGOTADO";
                         infoText.style.color = "red";
@@ -730,6 +799,9 @@
                 } else {
                     botao.disabled = false;
                     botao.innerText = "Adicionar ao Carrinho";
+                    // REMOVE O FILTRO CINZA SE TIVER ESTOQUE
+                    if(img) img.classList.remove('esgotado-img');
+
                     if(infoText) {
                         infoText.innerText = `Estoque: ${estoque} ${estoque === 1 ? 'unidade' : 'unidades'}`;
                         infoText.style.color = "#777";
@@ -761,7 +833,6 @@
             }
         }
 
-        // Lógica de Cupom
         function aplicarCupom() {
             const input = document.getElementById('input-cupom').value.trim().toUpperCase();
             const aviso = document.getElementById('aviso-cupom');
@@ -903,10 +974,13 @@
 
         document.querySelectorAll('.product-image').forEach(img => {
             img.onclick = function() {
-                const modal = document.getElementById("meuModal");
-                const modalImg = document.getElementById("imgExpandida");
-                modal.style.display = "flex";
-                modalImg.src = this.src;
+                // Apenas expande se não estiver esgotado
+                if(!this.classList.contains('esgotado-img')) {
+                    const modal = document.getElementById("meuModal");
+                    const modalImg = document.getElementById("imgExpandida");
+                    modal.style.display = "flex";
+                    modalImg.src = this.src;
+                }
             }
         });
     </script>
